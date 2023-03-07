@@ -3,9 +3,16 @@ import Player from '@vimeo/player';
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
 
+const throttle = require('lodash.throttle');
+
+    
+
 player.on('timeupdate', function (currentTime) {
     localStorage.setItem("videoplayer-current-time", JSON.stringify(currentTime));
-});
+
+    
+}
+);
 
 const savedSettings = localStorage.getItem("videoplayer-current-time");
 const parsedSettings = JSON.parse(savedSettings);
