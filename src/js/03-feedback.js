@@ -36,3 +36,19 @@ if (savedMailAndMessage) {
     inputForm.value = parsedMailAndMessage.email;
     textareaForm.value = parsedMailAndMessage.message;
 };
+
+form.addEventListener('submit', onFormSubmit);
+
+function onFormSubmit(event) {
+    const savedMailAndMessage = localStorage.getItem("feedback-form-state");
+
+    const parsedMailAndMessage = JSON.parse(savedMailAndMessage);
+
+    console.log(parsedMailAndMessage);
+
+    event.preventDefault();
+
+    event.currentTarget.reset();
+
+    localStorage.removeItem("feedback-form-state");
+}
