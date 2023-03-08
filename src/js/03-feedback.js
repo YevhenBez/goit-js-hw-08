@@ -1,30 +1,18 @@
+import throttle from 'lodash.throttle';
+
 const form = document.querySelector('.feedback-form');
 
 const inputForm = document.querySelector('input');
 
 const textareaForm = document.querySelector('textarea');
 
-form.addEventListener('input', onFormInput);
+form.addEventListener('input', throttle(onFormInput, 500));
 
 function onFormInput(event) {
-    // event.preventDefault();
-
-    const {
-        elements: { email, message },
-    } = event.currentTarget
-
-    const mailAndMessage = { email: email.value, message: message.value };
     
-    // if (mailAndPassword.email === "" || mailAndPassword.password === "") {
-    //     alert(message);
-    //     return;
-    // };
+    const mailAndMessage = { email: inputForm.value, message: textareaForm.value };
+    
     localStorage.setItem("feedback-form-state", JSON.stringify(mailAndMessage)); 
-
-    // console.log(mailAndMessage);
-
-    // event.currentTarget.reset();
-
 
 }
 
